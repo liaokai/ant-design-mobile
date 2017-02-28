@@ -1,7 +1,16 @@
 ---
 order: 0
-title: 示例集合
+title:
+  zh-CN: 示例集合
+  en-US: Example Collection
 ---
+## zh-CN
+
+这是中文
+
+## en-US
+
+This is english
 
 
 ````jsx

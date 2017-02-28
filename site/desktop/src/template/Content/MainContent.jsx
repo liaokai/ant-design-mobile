@@ -5,8 +5,7 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Article from './Article';
 import ComponentDoc from './ComponentDoc';
-import * as utils from '../utils';
-import config from '../../';
+import * as utils from '../../../../utils';
 
 const SubMenu = Menu.SubMenu;
 
@@ -91,7 +90,7 @@ export default class MainContent extends React.Component {
   generateSubMenuItems(obj) {
     const topLevel = (obj.topLevel || []).map(this.generateMenuItem.bind(this, true));
     const itemGroups = Object.keys(obj).filter(this.isNotTopLevel)
-      .sort((a, b) => config.typeOrder[a] - config.typeOrder[b])
+      .sort((a, b) => this.props.themeConfig.categoryOrder[a] - this.props.themeConfig.categoryOrder[b])
       .map((type, index) => {
         const groupItems = obj[type].sort((a, b) => (
           (a.title || a.english).charCodeAt(0) - (b.title || b.english).charCodeAt(0)
@@ -123,7 +122,7 @@ export default class MainContent extends React.Component {
 
     const topLevel = this.generateSubMenuItems(menuItems.topLevel);
     const subMenu = Object.keys(menuItems).filter(this.isNotTopLevel)
-      .sort((a, b) => config.categoryOrder[a] - config.categoryOrder[b])
+      .sort((a, b) => this.props.themeConfig.categoryOrder[a] - this.props.themeConfig.categoryOrder[b])
       .map((category) => {
         const subMenuItems = this.generateSubMenuItems(menuItems[category]);
         return (
